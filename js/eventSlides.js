@@ -17,7 +17,7 @@ const Slides = component('Slides', {
   });
   const eventsInstance = activeEvents.map(event =>
     <li>
-      <img style={event.backgroundImageStyle}></img>
+      <img src={event.eventPicture} className="filterImg"></img>
       <div className="caption center-align">
           <h3>{event.eventTitle}</h3>
           {event.eventCaption === "" ? "" : <h5 className="light text-lighten-3">{event.eventCaption}</h5>}

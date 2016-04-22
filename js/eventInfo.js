@@ -5,71 +5,75 @@ let eventsInfo = [
     eventCaption: "Come to the Crawfish Boil! Tear up Matt's Casa!",
     eventInfo: "Friday, May 6th @ Matt Chasen's house on Mt. Bonnell Rd.",
     eventLink: "http://goo.gl/forms/WI7o8ZYdLm",
-    eventPicture: imagesPrefix+"crawfishboil.jpg"
+    eventPicture: "crawfishboil.jpg"
   },
   { //Second event
     eventTitle: "Party Barge",
     eventCaption: "",
     eventInfo: "Friday, June 17th",
     eventLink: "",
-    eventPicture: imagesPrefix+"partybarge.jpg"
+    eventPicture: "partybarge.jpg"
   },
   { //Third event
     eventTitle: "Independence Day Holiday",
     eventCaption: "\'murica",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+"murica.jpg"
+    eventPicture: "murica.png"
   },
   { //Fourth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Fifth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Sixth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Seventh event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Eighth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Ninth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   },
   { //Tenth event
     eventTitle: "",
     eventCaption: "",
     eventInfo: "",
     eventLink: "",
-    eventPicture: imagesPrefix+""
+    eventPicture: ""
   }
 ]
+
+eventsInfo.forEach(event => {
+  event.eventPicture = imagesPrefix+event.eventPicture;
+});
 
 export default eventsInfo;
