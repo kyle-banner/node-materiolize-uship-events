@@ -1,7 +1,7 @@
 {
   "name": "uship_events",
   "version": "1.0.0",
-  "description": "Slides. For uShip. uSlide.",
+  "description": "Slides. For uShip. uSlides.",
   "main": "hot-reload-server.js",
   "scripts": {
     "start": "node hot-reload-server.js"
@@ -12,12 +12,14 @@
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "jade": "~1.11.0",
+    "jquery": "*",
     "method-override": "^2.3.1",
     "mongoose": "^4.4.13",
     "morgan": "~1.7.0",
     "omniscient": "^4.0.0",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
@@ -35,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/billfienberg/MateRIOlize"
+    "url": "https://github.com/kyle-banner/uship-events"
   },
   "keywords": [
     "materialize",
@@ -50,8 +52,10 @@
   "author": "@kyle-banner and @zerkz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/billfienberg/MateRIOlize/issues"
+    "url": "https://github.com/kyle-banner/uship-events"
   },
-  "engines": {"node": ">=5.11.0"},
-  "homepage": "https://github.com/billfienberg/MateRIOlize"
+  "engines": {
+    "node": ">=5.11.0"
+  },
+  "homepage": "https://github.com/kyle-banner/uship-events"
 }
