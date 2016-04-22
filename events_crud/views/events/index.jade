@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+    h1.
+         #{title}
+    a(href='/events/new') New Event
+    ul
+        - each event, i in events
+            li
+                = event.title
+                = event.caption
+                = event.info
+                = event._id
+                form(action='/events/#{event._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
+                    input(type='hidden',value='DELETE',name='_method')
+                    button(type='submit').
+                        Delete
+                p
+                    a(href='/events/#{event._id}/edit') Edit
+                p
+                    a(href='/events/#{event._id}') Show

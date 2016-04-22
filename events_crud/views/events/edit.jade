@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+	h1.
+		Event ID #{event._id}
+	form(action='/events/#{event._id}/edit',method='post',name='updateevent',enctype='application/x-www-form-urlencoded')
+		p Title:
+			input#inputTitle(type='text', value='#{event.title}', name='title')
+		p Caption:
+			input#inputCaption(type='text', value='#{event.caption}', name='caption')
+		p Info:
+			input#inputInfo(type='text', value='#{event.info}', name='info')
+		p
+			input(type='hidden',value='PUT',name='_method')
+		p
+			button#btnSubmit(type='submit').
+				Update
