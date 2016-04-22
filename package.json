@@ -1,7 +1,7 @@
 {
-  "name": "MateRIOlize",
+  "name": "uShip Events",
   "version": "1.0.0",
-  "description": "Add Materialize to the React, Immstruct and Omniscient starter pack",
+  "description": "Slides. For uShip. uSlide.",
   "main": "hot-reload-server.js",
   "scripts": {
     "start": "node ./bin/www"
