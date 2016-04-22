@@ -5,10 +5,12 @@ block content
 		#{title}
 	form#formAddEvent(name="addEvent",method="post",action="/events")
 		p Title:
-			input#inputTitle(type="text", placeholder="ex. First Friday", name="title")
+			input#inputTitle(type="text", placeholder="ex. Crawfish Boil", name="title")
 		p Caption:
-			input#inputCaption(type='text', placeholder="ex. Hops and Grains!", name='caption')
+			input#inputCaption(type='text', placeholder="ex. Friday, May 6th @ Matt Chasen's house on Mt. Bonnell Rd.", name='caption')
 		p Info:
-			input#inputInfo(type='text', placeholder="ex. 4/22/2016 6PM!", name='info')
+			input#inputInfo(type='text', placeholder="ex. 4/22/2016 6PM", name='info')
+		p Link:
+			input#inputInfo(type='text', placeholder="ex. http://goo.gl/form", name='link')
 		p
 			button#btnSubmit(type="submit") submit

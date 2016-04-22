@@ -49,6 +49,7 @@ router.route('/')
         var title = req.body.title;
         var caption = req.body.caption;
         var info = req.body.info;
+        var link = req.body.link;
         var imageFileName = req.body.imageFileName
         var image = req.body.image;
 
@@ -172,6 +173,7 @@ router.route('/:id/edit')
       var title = req.body.title;
       var caption = req.body.caption;
       var info = req.body.info;
+      var link = req.body.link;
       var imageFileName = req.body.imageFileName
       var image = req.body.image;
 
