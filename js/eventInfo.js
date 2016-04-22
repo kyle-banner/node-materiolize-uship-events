@@ -12,14 +12,14 @@ let eventsInfo = [
     eventCaption: "",
     eventInfo: "Friday, June 17th",
     eventLink: "",
-    eventPicture: "partybarge.jpg"
+    eventPicture: "partybarge.JPG"
   },
   { //Third event
     eventTitle: "Independence Day Holiday",
     eventCaption: "\'murica",
     eventInfo: "",
     eventLink: "",
-    eventPicture: "murica.png"
+    eventPicture: "murica.jpg"
   },
   { //Fourth event
     eventTitle: "",
