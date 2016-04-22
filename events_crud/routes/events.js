@@ -60,7 +60,8 @@ router.route('/')
             title : title,
             caption : caption,
             info : info,
-            pictures : pictures
+            pictures : pictures,
+            link : link
         }, function (err, event) {
               if (err) {
                   res.send("There was a problem adding the information to the database.");
@@ -186,7 +187,8 @@ router.route('/:id/edit')
 	            title : title,
 	            caption : caption,
 	            info : info,
-	            pictures : pictures
+	            pictures : pictures,
+              link : link
 	        }, function (err, eventID) {
 	          if (err) {
 	              res.send("There was a problem updating the information to the database: " + err);
