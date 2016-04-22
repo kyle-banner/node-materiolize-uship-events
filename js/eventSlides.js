@@ -1,7 +1,5 @@
 import component from './jsxComponent';
 import React from 'react';
-import Immutable from 'immutable';
-import immstruct from 'immstruct';
 import shouldUpdate from 'omniscient/shouldupdate';
 import eventsArray from './eventInfo';
 
