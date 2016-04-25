@@ -3,6 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'), //mongo connection
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'), //used to manipulate POST
+    upload = require('multer')(),
     imageTypeValidator = require('image-type');
 
 var supportedImageTypes = ['bmp', 'png', 'gif', 'jpg', 'tif'];
@@ -10,7 +11,7 @@ var supportedImageTypes = ['bmp', 'png', 'gif', 'jpg', 'tif'];
 
 function validateAndReturnMime(buffer) {
   var imageInfo = imageTypeValidator(buffer);
-  if (imageInfo.ext && supportedImageTypes.indexOf(imageInfo.ext) >= 0 )) {
+  if (imageInfo.ext && supportedImageTypes.indexOf(imageInfo.ext) >= 0 ) {
     return imageInfo.mime;
   } else {
     throw "Image format not supported. Please upload one of the following: " + supportedImageTypes.join(',');
@@ -20,6 +21,7 @@ function validateAndReturnMime(buffer) {
 //Any requests to this controller must pass through this 'use' function
 //Copy and pasted from method-override
 router.use(bodyParser.urlencoded({ extended: true }))
+router.use(upload.single('image'));
 router.use(methodOverride(function(req, res){
       if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
@@ -64,13 +66,13 @@ router.route('/')
         var info = req.body.info;
         var link = req.body.link;
         var imageFileName = req.body.imageFileName
-        var image = req.body.image;
+        var image = req.file && req.file.buffer;
         var imageType = "";
         try {
           imageType = validateAndReturnMime(image);
-        } catch (e) (
+        } catch (e) {
           return res.status(400).send(e);
-        )
+        }
 
 
         //call the create function for our database
@@ -147,9 +149,9 @@ router.route('/:id')
         console.log('GET Error: There was a problem retrieving: ' + err);
       } else {
         console.log('GET Retrieving ID: ' + event._id);
+        event.image = event.image && event.image.toString('base64');
         res.format({
           html: function(){
-              event.image = event.image.toString('base64');
               res.render('events/show', {
                 "event" : event
               });
@@ -172,9 +174,9 @@ router.route('/:id/edit')
 	        } else {
 	            //Return the event
 	            console.log('GET Retrieving ID: ' + event._id);
+              event.image = event.image && event.image.toString('base64');
 	            res.format({
 	                //HTML response will render the 'edit.jade' template
-                  event.image = event.image.toString('base64');
 	                html: function(){
 	                       res.render('events/edit', {
 	                          "title" : 'Event:' + event.title,
@@ -196,19 +198,18 @@ router.route('/:id/edit')
       var caption = req.body.caption;
       var info = req.body.info;
       var link = req.body.link;
-      var imageFileName = req.body.imageFileName
-      var image = req.body.image;
+      var image = req.file && req.file.buffer;
       var imageType = "";
       try {
         imageType = validateAndReturnMime(image);
-      } catch (e) (
+      } catch (e) {
         return res.status(400).send(e);
-      )
+      }
 
 	    //find the document by ID
 	    mongoose.model('Event').findById(req.id, function (err, event) {
 	        //update it
-          let updatedEvent = {
+          var updatedEvent = {
 	            title : title,
 	            caption : caption,
 	            info : info,

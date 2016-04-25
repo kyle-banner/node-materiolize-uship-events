@@ -5,7 +5,7 @@ script(type='text/javascript')
 block content
 	h1.
 		Event ID #{event._id}
-	form(action='/events/#{event._id}/edit',method='post',name='updateevent',enctype='application/x-www-form-urlencoded')
+	form(action='/events/#{event._id}/edit',method='POST',name='updateevent',enctype='multipart/form-data')
 		p Title:
 			input#inputTitle(type='text', value='#{event.title}', name='title')
 		p Caption:
@@ -14,6 +14,7 @@ block content
 			input#inputInfo(type='text', value='#{event.info}', name='info')
 		p Image:
 			img#image(alt='Event Image', src="data:#{event.imageType};base64,#{event.image}")
+		p
 			input#inputImage(type='file', name="image", accept='image/jpeg,image/gif,image/png,image/bmp,image/tiff')
 		p
 			input(type='hidden',value='PUT',name='_method')

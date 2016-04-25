@@ -3,7 +3,7 @@ extends ../layout
 block content
 	h1.
 		#{title}
-	form#formAddEvent(name="addEvent",method="post",action="/events")
+	form#formAddEvent(name="addEvent",method="post",action="/events", enctype='multipart/form-data')
 		p Title:
 			input#inputTitle(type="text", placeholder="ex. Crawfish Boil", name="title")
 		p Caption:
@@ -13,6 +13,6 @@ block content
 		p Link:
 			input#inputInfo(type='text', placeholder="ex. http://goo.gl/form", name='link')
 		p Image:
-			input#inputImage(type='file', name="image", accept=accept='image/jpeg,image/gif,image/png,image/bmp,image/tiff')
+			input#inputImage(type='file', name="image", accept='image/jpeg,image/gif,image/png,image/bmp,image/tiff')
 		p
 			button#btnSubmit(type="submit") submit
