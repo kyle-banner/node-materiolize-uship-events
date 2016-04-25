@@ -13,8 +13,11 @@ const Slides = component('Slides', {
       activeEvents.push(event);
     }
   });
+
+  let i = 0;
+
   const eventsInstance = activeEvents.map(event =>
-    <li>
+    <li key={i++}>
       <img src={event.eventPicture} className="filterImg"></img>
       <div className="caption center-align">
           <h3>{event.eventTitle}</h3>
