@@ -1,6 +1,8 @@
 Windows:
 
 1. You must have NodeJS installed.
+  * Install in OS X install using Homebrew by running `brew install mongodb`
+  * Install in Windows install using chocolatey by running `choco install mongodb`
 2. You must have MongoDB installed.
 3. npm install
 4. Start mongo (Open a cmd window and type `mongod`)
