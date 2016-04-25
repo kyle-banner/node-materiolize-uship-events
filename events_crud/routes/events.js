@@ -2,7 +2,20 @@ var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'), //mongo connection
     bodyParser = require('body-parser'), //parses information from POST
-    methodOverride = require('method-override'); //used to manipulate POST
+    methodOverride = require('method-override'), //used to manipulate POST
+    imageTypeValidator = require('image-type');
+
+var supportedImageTypes = ['bmp', 'png', 'gif', 'jpg', 'tif'];
+
+
+function validateAndReturnMime(buffer) {
+  var imageInfo = imageTypeValidator(buffer);
+  if (imageInfo.ext && supportedImageTypes.indexOf(imageInfo.ext) >= 0 )) {
+    return imageInfo.mime;
+  } else {
+    throw "Image format not supported. Please upload one of the following: " + supportedImageTypes.join(',');
+  }
+}
 
 //Any requests to this controller must pass through this 'use' function
 //Copy and pasted from method-override
@@ -10,9 +23,9 @@ router.use(bodyParser.urlencoded({ extended: true }))
 router.use(methodOverride(function(req, res){
       if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
-        var method = req.body._method
-        delete req.body._method
-        return method
+        var method = req.body._method;
+        delete req.body._method;
+        return method;
       }
 }))
 
@@ -52,15 +65,21 @@ router.route('/')
         var link = req.body.link;
         var imageFileName = req.body.imageFileName
         var image = req.body.image;
+        var imageType = "";
+        try {
+          imageType = validateAndReturnMime(image);
+        } catch (e) (
+          return res.status(400).send(e);
+        )
 
-        var pictures = [imageFileName];
 
         //call the create function for our database
         mongoose.model('Event').create({
             title : title,
             caption : caption,
             info : info,
-            pictures : pictures,
+            image : image,
+            imageType : imageType,
             link : link
         }, function (err, event) {
               if (err) {
@@ -130,6 +149,7 @@ router.route('/:id')
         console.log('GET Retrieving ID: ' + event._id);
         res.format({
           html: function(){
+              event.image = event.image.toString('base64');
               res.render('events/show', {
                 "event" : event
               });
@@ -154,6 +174,7 @@ router.route('/:id/edit')
 	            console.log('GET Retrieving ID: ' + event._id);
 	            res.format({
 	                //HTML response will render the 'edit.jade' template
+                  event.image = event.image.toString('base64');
 	                html: function(){
 	                       res.render('events/edit', {
 	                          "title" : 'Event:' + event.title,
@@ -177,19 +198,27 @@ router.route('/:id/edit')
       var link = req.body.link;
       var imageFileName = req.body.imageFileName
       var image = req.body.image;
-
-      var pictures = [imageFileName];
+      var imageType = "";
+      try {
+        imageType = validateAndReturnMime(image);
+      } catch (e) (
+        return res.status(400).send(e);
+      )
 
 	    //find the document by ID
 	    mongoose.model('Event').findById(req.id, function (err, event) {
 	        //update it
-	        event.update({
+          let updatedEvent = {
 	            title : title,
 	            caption : caption,
 	            info : info,
-	            pictures : pictures,
               link : link
-	        }, function (err, eventID) {
+	        };
+          if (image) {
+            updatedEvent.image = image;
+            updatedEvent.imageType = imageType;
+          }
+	        event.update(updatedEvent, function (err, eventID) {
 	          if (err) {
 	              res.send("There was a problem updating the information to the database: " + err);
 	          }
@@ -201,7 +230,7 @@ router.route('/:id/edit')
 	                     },
 	                     //JSON responds showing the updated values
 	                    json: function(){
-	                           res.json(event);
+	                           res.json(updatedEvent);
 	                     }
 	                  });
 	           }

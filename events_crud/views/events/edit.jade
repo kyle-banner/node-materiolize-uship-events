@@ -1,5 +1,7 @@
 extends ../layout
 
+script(type='text/javascript')
+
 block content
 	h1.
 		Event ID #{event._id}
@@ -10,6 +12,9 @@ block content
 			input#inputCaption(type='text', value='#{event.caption}', name='caption')
 		p Info:
 			input#inputInfo(type='text', value='#{event.info}', name='info')
+		p Image:
+			img#image(alt='Event Image', src="data:#{event.imageType};base64,#{event.image}")
+			input#inputImage(type='file', name="image", accept='image/jpeg,image/gif,image/png,image/bmp,image/tiff')
 		p
 			input(type='hidden',value='PUT',name='_method')
 		p

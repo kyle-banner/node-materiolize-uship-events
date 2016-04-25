@@ -4,6 +4,7 @@ var eventSchema = new mongoose.Schema({
   caption: String,
   info : String,
   link : String,
-  pictures : Array
+  image : Buffer,
+  imageType String: 
 });
 mongoose.model('Event', eventSchema);

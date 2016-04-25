@@ -1,5 +1,8 @@
 extends ../layout
-
+script(type='text/javascript')
+	function generateImageDataUri(image, imageType) {
+			return "data:" + imageType + ";base64," + window.btoa(image);
+	}
 block content
     h1.
         Infophoto #{event._id}
