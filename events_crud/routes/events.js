@@ -41,6 +41,9 @@ router.route('/')
               if (err) {
                   return console.error(err);
               } else {
+                  for(event in events) {
+                    event.image = "data:" + event.imageType + ";base64," + event.image;
+                  }
                   //respond to both HTML and JSON. JSON responses require 'Accept: application/json;' in the Request Header
                   res.format({
                       //HTML response will render the index.jade file in the views/events folder. We are also setting "events" to be an accessible variable in our jade view
