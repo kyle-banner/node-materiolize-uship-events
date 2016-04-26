@@ -4,6 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'), //used to manipulate POST
     upload = require('multer')(),
+    cors = require('cors'),
     imageTypeValidator = require('image-type');
 
 var supportedImageTypes = ['bmp', 'png', 'gif', 'jpg', 'tif'];
@@ -18,8 +19,14 @@ function validateAndReturnMime(buffer) {
   }
 }
 
+
+var corsOptions = {
+  origin : ['http://localhost:3000']
+};
+
 //Any requests to this controller must pass through this 'use' function
 //Copy and pasted from method-override
+router.use(cors(corsOptions))
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(upload.single('image'));
 router.use(methodOverride(function(req, res){
@@ -41,9 +48,6 @@ router.route('/')
               if (err) {
                   return console.error(err);
               } else {
-                  for(event in events) {
-                    event.image = "data:" + event.imageType + ";base64," + event.image;
-                  }
                   //respond to both HTML and JSON. JSON responses require 'Accept: application/json;' in the Request Header
                   res.format({
                       //HTML response will render the index.jade file in the views/events folder. We are also setting "events" to be an accessible variable in our jade view
@@ -55,6 +59,13 @@ router.route('/')
                     },
                     //JSON response will show all events in JSON format
                     json: function(){
+                        for(var i=0;i<events.length;i++) {
+                          events[i] = events[i].toObject();
+                          var event = events[i];
+                          if (event.image) {
+                            events[i].image = "data:" + event.imageType + ";base64," + event.image.toString('base64');
+                          }
+                        }
                         res.json(events);
                     }
                 });
