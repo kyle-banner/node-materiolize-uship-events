@@ -1,10 +1,7 @@
 import React from 'react';
 import omniscient from 'omniscient';
 import Slides from './eventSlides';
-
-const component = omniscient.withDefaults({
-  jsx: true
-});
+import component from './jsxComponent';
 
 $(document).ready(function(){
   $('.slider').slider({full_width: true});

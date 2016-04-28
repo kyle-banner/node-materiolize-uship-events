@@ -1,7 +1,5 @@
 import component from './jsxComponent';
 import React from 'react';
-import shouldUpdate from 'omniscient/shouldupdate';
-import eventsArray from './eventInfo';
 
 const Slides = component('Slides', {
 
@@ -34,9 +32,13 @@ const Slides = component('Slides', {
       </div>
     </li>
   );
-  
+
   return(
-    <div className="slider fullscreen events-slider"><ul className="slides">{eventsInstance}</ul></div>
+    <div className="slider fullscreen events-slider">
+      <ul className="slides">
+        {eventsInstance}
+      </ul>
+    </div>
   );
 
 });
