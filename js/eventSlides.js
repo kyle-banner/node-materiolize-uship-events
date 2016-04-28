@@ -8,7 +8,7 @@ const Slides = component('Slides', {
   $.ajax({
     async: false,
     type: 'GET',
-    url: 'http://localhost:3666/events',
+    url: 'http://hacktest:3666/events',
     headers : {
       "accept" : "application/json"
     },
