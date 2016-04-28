@@ -3,19 +3,19 @@ extends ../layout
 block content
     h1.
          #{title}
-    a(href='/events/new') New Event
+    a(href='/events/new') Add a new event
     ul
         - each event, i in events
             li
-                = event.title
-                = event.caption
-                = event.info
-                = event._id
+                = "Event Title: "+event.title+", "
+                = "Event Caption: "+event.caption+", "
+                = "Event Info: "+event.info+", "
+                = "Event Id (database): "+event._id+" "
                 form(action='/events/#{event._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
                     input(type='hidden',value='DELETE',name='_method')
                     button(type='submit').
-                        Delete
+                        Delete Event
                 p
-                    a(href='/events/#{event._id}/edit') Edit
+                    a(href='/events/#{event._id}/edit') Edit Event
                 p
-                    a(href='/events/#{event._id}') Show
+                    a(href='/events/#{event._id}') Show Event

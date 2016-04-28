@@ -10,7 +10,7 @@ $(document).ready(function(){
 const App = component('App', ({ counter }) => {
   return (
     <div className="app">
-          <Slides />
+      <Slides />
     </div>
   )
 });
