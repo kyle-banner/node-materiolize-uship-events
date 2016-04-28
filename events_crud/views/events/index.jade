@@ -4,18 +4,25 @@ block content
     h1.
          #{title}
     a(href='/events/new') Add a new event
-    ul
+    ol
         - each event, i in events
             li
-                = "Event Title: "+event.title+", "
-                = "Event Caption: "+event.caption+", "
-                = "Event Info: "+event.info+", "
-                = "Event Id (database): "+event._id+" "
+                = "Event Title: "+event.title
+                br
+                = "Event Caption: "+event.caption
+                br
+                = "Event Info: "+event.info
+                br
+                = "Event Id (mongodb): "+event._id+" "
+                br
+                br
+                = "Actions: "
                 form(action='/events/#{event._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
                     input(type='hidden',value='DELETE',name='_method')
                     button(type='submit').
                         Delete Event
-                p
+                    &nbsp;
                     a(href='/events/#{event._id}/edit') Edit Event
-                p
+                    &nbsp;
                     a(href='/events/#{event._id}') Show Event
+                br

@@ -1,9 +1,8 @@
 extends ../layout
 block content
     h1.
-        Infophoto #{event._id}
-    p Title: #{event.title}
+        #{event.title}
     p Caption: #{event.caption}
     p Info: #{event.info}
-    p Image: 
+    p Image:
       img(alt='Event Image', src="data:#{event.imageType};base64,#{event.image}")
