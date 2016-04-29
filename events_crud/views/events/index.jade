@@ -3,7 +3,7 @@ extends ../layout
 block content
     h1.
          #{title}
-    a(href='/events/new') Add a new event
+    a(href='/events/new', class="btn btn-success") Add a new event
     ol
         - each event, i in events
             li
@@ -19,10 +19,10 @@ block content
                 = "Actions: "
                 form(action='/events/#{event._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
                     input(type='hidden',value='DELETE',name='_method')
-                    button(type='submit').
-                        Delete Event
+                    a(href='/events/#{event._id}', class="btn btn-primary") Show Event
                     &nbsp;
-                    a(href='/events/#{event._id}/edit') Edit Event
+                    a(href='/events/#{event._id}/edit', class="btn btn-warning") Edit Event
                     &nbsp;
-                    a(href='/events/#{event._id}') Show Event
+                    button(type='submit', class="btn btn-danger") Delete Event                        
+                    
                 br
