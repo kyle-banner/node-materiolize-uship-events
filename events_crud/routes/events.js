@@ -21,7 +21,7 @@ function validateAndReturnMime(buffer) {
 
 
 var corsOptions = {
-  origin : ['http://hacktest:3000']
+  origin : ['http://hacktest:3000', 'http://localhost:3000']
 };
 
 //Any requests to this controller must pass through this 'use' function
