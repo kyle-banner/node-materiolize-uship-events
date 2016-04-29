@@ -8,4 +8,4 @@ Windows:
 4. Start mongo (Open a cmd window and type `mongod`)
 4. Open a cmd window and type `npm start`
 5. You're now hosting the events project. Navigate to http://localhost:3000 to see the results.
-6. Use CRUD to update MongoDB. (add more info here later)
+6. Use CRUD (http://localhost:3666) to update MongoDB. You will see the changes reflected on http://localhost:3000.
